@@ -75,5 +75,15 @@ h2{
     cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+    .modal-content {
+        flex-direction: column;
+    }
+
+    .modal-content img {
+        max-width: 100%;
+    }
+}
+
   
 
