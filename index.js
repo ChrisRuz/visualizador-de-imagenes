@@ -10,11 +10,13 @@ botonMostrar.addEventListener("click", () => {
     const imagenId = botonMostrar.dataset.imagenId; // Valor dinámico obtenido del atributo data del botón
     // const imagenNombre = botonMostrar.getAttribute("data-imagen-id");
     // document.querySelector("#imagen-nombre").textContent = imagenNombre;
-    const url = new URL("https://sisivey.com/apiobraivey/index.php");
+    const url = new URL(window.location.href);
     url.searchParams.set("imagen", imagenId);
     window.history.pushState({}, "", url);
-    imagen1.src = `https://sisivey.com/apiobraivey/index.php?imagen=${imagenId}`;
-    imagen2.src = `https://sisivey.com/apiobraivey/index.php?imagen=${imagenId}&version=2`;
+    imagen1.src = `https://sisivey.com/apiobraivey/imagenes/${imagenId}.JPG`;
+    imagen2.src = `https://sisivey.com/apiobraivey/imagenes/${
+      imagenId + ".2"
+    }.JPG`;
     imagenTitulo.textContent = imagenId; // Asignar el valor dinámico al h2
     modal.style.display = "block";
   } else {
@@ -35,10 +37,11 @@ if (imagenId) {
       const imagen2 = modal.querySelector("#imagen2");
       const imagenTitulo = modal.querySelector("#imagen-titulo");
       botonMostrar.dataset.imagenId = imagenId;
-      imagen1.src = `https://sisivey.com/apiobraivey/index.php?imagen=${imagenId}`;
-      imagen2.src = `https://sisivey.com/apiobraivey/index.php?imagen=${imagenId}&version=2`;
+      imagen1.src = `https://sisivey.com/apiobraivey/imagenes/${imagenId}.JPG`;
+      imagen2.src = `https://sisivey.com/apiobraivey/imagenes/${
+        imagenId + ".2"
+      }.JPG`;
       imagenTitulo.textContent = imagenId;
-      console.log(imagenId)
       modal.style.display = "block";
     } else {
       attempts++; // Incrementar el contador de intentos
@@ -53,7 +56,6 @@ if (imagenId) {
     }
   });
 }
-
 
 
 const botonCerrar = document.querySelector("#cerrar");
