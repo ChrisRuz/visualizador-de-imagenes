@@ -13,10 +13,23 @@ botonMostrar.addEventListener("click", () => {
     const url = new URL(window.location.href);
     url.searchParams.set("imagen", imagenId);
     window.history.pushState({}, "", url);
-    imagen1.src = `https://sisivey.com/apiobraivey/imagenes/${imagenId}.JPG`;
-    imagen2.src = `https://sisivey.com/apiobraivey/imagenes/${
-      imagenId + ".2"
-    }.JPG`;
+
+    // Ocultar la URL de la imagen en el inspector de elementos
+    const imagen1Url = `https://sisivey.com/apiobraivey/imagenes/${imagenId}.JPG`;
+    const imagen2Url = `https://sisivey.com/apiobraivey/imagenes/${imagenId + ".2"}.JPG`;
+    Object.defineProperty(imagen1, 'src', {
+      get() {
+        return imagen1Url;
+      },
+      set() {}
+    });
+    Object.defineProperty(imagen2, 'src', {
+      get() {
+        return imagen2Url;
+      },
+      set() {}
+    });
+
     imagenTitulo.textContent = imagenId; // Asignar el valor dinámico al h2
     modal.style.display = "block";
   } else {
@@ -37,10 +50,23 @@ if (imagenId) {
       const imagen2 = modal.querySelector("#imagen2");
       const imagenTitulo = modal.querySelector("#imagen-titulo");
       botonMostrar.dataset.imagenId = imagenId;
-      imagen1.src = `https://sisivey.com/apiobraivey/imagenes/${imagenId}.JPG`;
-      imagen2.src = `https://sisivey.com/apiobraivey/imagenes/${
-        imagenId + ".2"
-      }.JPG`;
+
+      // Ocultar la URL de la imagen en el inspector de elementos
+      const imagen1Url = `https://sisivey.com/apiobraivey/imagenes/${imagenId}.JPG`;
+      const imagen2Url = `https://sisivey.com/apiobraivey/imagenes/${imagenId + ".2"}.JPG`;
+      Object.defineProperty(imagen1, 'src', {
+        get() {
+          return imagen1Url;
+        },
+        set() {}
+      });
+      Object.defineProperty(imagen2, 'src', {
+        get() {
+          return imagen2Url;
+        },
+        set() {}
+      });
+
       imagenTitulo.textContent = imagenId;
       modal.style.display = "block";
     } else {
